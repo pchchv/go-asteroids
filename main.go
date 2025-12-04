@@ -3,11 +3,16 @@ package main
 import rl "github.com/gen2brain/raylib-go/raylib"
 
 const (
+	tileSize     = 64
 	screenWidth  = 800
 	screenHeight = 400
 )
 
-var texTiles, texBackground rl.Texture2D
+var (
+	texTiles      rl.Texture2D
+	texBackground rl.Texture2D
+	spriteRec     rl.Rectangle
+)
 
 func init() {
 	// builtin go function which runs before main()
@@ -18,6 +23,7 @@ func init() {
 	// load textures
 	texTiles = rl.LoadTexture("resources/tilesheet.png")
 	texBackground = rl.LoadTexture("resources/space_background.png")
+	spriteRec = rl.Rectangle{X: tileSize * 0, Y: tileSize * 2, Width: tileSize, Height: tileSize}
 }
 
 func deinit() {
