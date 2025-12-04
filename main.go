@@ -21,6 +21,8 @@ func init() {
 
 func deinit() {
 	rl.CloseWindow()
+	// unload textures when the game closes
+	rl.UnloadTexture(texBackground)
 }
 
 func draw() {
