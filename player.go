@@ -10,3 +10,15 @@ type Player struct {
 	speed        rl.Vector2
 	size         rl.Vector2
 }
+
+func (p *Player) Draw() {
+	destTexture := rl.Rectangle{X: p.position.X, Y: p.position.Y, Width: p.size.X, Height: p.size.Y}
+	rl.DrawTexturePro(
+		texTiles,
+		spriteRec,
+		destTexture,
+		rl.Vector2{X: p.size.X / 2, Y: p.size.Y / 2},
+		p.rotation,
+		rl.White,
+	)
+}
