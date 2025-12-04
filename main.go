@@ -7,11 +7,16 @@ const (
 	screenHeight = 400
 )
 
+var texBackground rl.Texture2D
+
 func init() {
 	// builtin go function which runs before main()
 	// setup the raylib window
 	rl.InitWindow(screenWidth, screenHeight, "Asteroids")
 	rl.SetTargetFPS(60)
+
+	// load textures
+	texBackground = rl.LoadTexture("resources/space_background.png")
 }
 
 func deinit() {
