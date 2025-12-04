@@ -7,7 +7,7 @@ const (
 	screenHeight = 400
 )
 
-var texBackground rl.Texture2D
+var texTiles, texBackground rl.Texture2D
 
 func init() {
 	// builtin go function which runs before main()
@@ -16,12 +16,14 @@ func init() {
 	rl.SetTargetFPS(60)
 
 	// load textures
+	texTiles = rl.LoadTexture("resources/tilesheet.png")
 	texBackground = rl.LoadTexture("resources/space_background.png")
 }
 
 func deinit() {
 	rl.CloseWindow()
 	// unload textures when the game closes
+	rl.UnloadTexture(texTiles)
 	rl.UnloadTexture(texBackground)
 }
 
