@@ -30,3 +30,15 @@ func draw() {
 
 // TODO: update the state
 func update() {}
+
+func main() {
+	// when the main function ends,
+	// call the deinit() function
+	defer deinit()
+
+	// continue the loop until the window is closed or ESC is pressed
+	for !rl.WindowShouldClose() {
+		draw()
+		update()
+	}
+}
