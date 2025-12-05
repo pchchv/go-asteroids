@@ -33,16 +33,26 @@ type Player struct {
 
 func (p *Player) Draw() {
 	destTexture := rl.Rectangle{X: p.position.X, Y: p.position.Y, Width: p.size.X, Height: p.size.Y}
-	rl.DrawTexturePro(
-		texTiles,
-		spriteRec,
-		destTexture,
-		rl.Vector2{X: p.size.X / 2, Y: p.size.Y / 2},
-		p.rotation,
-		rl.White,
-	)
+	if p.isBoosting {
+		rl.DrawTexturePro(
+			texTiles,
+			boostRec,
+			destTexture,
+			rl.Vector2{X: p.size.X / 2, Y: p.size.Y/2 - 40},
+			p.rotation,
+			rl.White,
+		)
+	} else {
+		rl.DrawTexturePro(
+			texTiles,
+			spriteRec,
+			destTexture,
+			rl.Vector2{X: p.size.X / 2, Y: p.size.Y / 2},
+			p.rotation,
+			rl.White,
+		)
+	}
 }
-
 func (p *Player) Update() {
 	// rotate the player with the arrow keys
 	if rl.IsKeyDown(rl.KeyLeft) {
@@ -52,12 +62,15 @@ func (p *Player) Update() {
 	if rl.IsKeyDown(rl.KeyRight) {
 		player.rotation += rotationSpeed
 	}
+	// default to not boosting
+	player.isBoosting = false
 
 	// accelerate the player with up
 	if rl.IsKeyDown(rl.KeyUp) {
 		if player.acceleration < 0.9 {
 			player.acceleration += 0.1
 		}
+		player.isBoosting = true
 	}
 
 	// decellerate the player with down
