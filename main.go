@@ -202,6 +202,7 @@ func update() {
 			asteroids[i].Update()
 		}
 
+		checkCollisions()
 	}
 }
 
@@ -307,6 +308,20 @@ func createLargeAsteroid() Asteroid {
 func drawCenteredText(text string, y, fontSize int32, color rl.Color) {
 	textWidth := rl.MeasureText(text, fontSize)
 	rl.DrawText(text, screenWidth/2-textWidth/2, y, fontSize, color)
+}
+
+func checkCollisions() {
+	for i := len(asteroids) - 1; i >= 0; i-- {
+		// check for collision between player and asteroid
+		if rl.CheckCollisionCircles(
+			player.position,
+			player.size.X/4,
+			asteroids[i].position,
+			asteroids[i].size.X/4,
+		) {
+			gameOver = true
+		}
+	}
 }
 
 func main() {
