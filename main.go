@@ -221,6 +221,26 @@ func wrapPosition(pos *rl.Vector2, objectSize float32) {
 	}
 }
 
+func createAsteroid(asteroidSize AsteroidSize, position, speed rl.Vector2) Asteroid {
+	// scale the image of the asteroid based on the asteroidSize
+	var size rl.Vector2
+	switch asteroidSize {
+	case Small:
+		size = rl.Vector2{X: tileSize * 0.4, Y: tileSize * 0.4}
+	case Medium:
+		size = rl.Vector2{X: tileSize * 0.7, Y: tileSize * 0.7}
+	case Large:
+		size = rl.Vector2{X: tileSize * 1.0, Y: tileSize * 1.0}
+	}
+
+	return Asteroid{
+		position:     position,
+		speed:        speed,
+		size:         size,
+		asteroidSize: asteroidSize,
+	}
+}
+
 func main() {
 	// when the main function ends,
 	// call the deinit() function
