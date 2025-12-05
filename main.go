@@ -368,6 +368,32 @@ func checkCollisions() {
 	}
 }
 
+func fireShot() {
+	for i := range shots {
+		// find the first inactive shot
+		if !shots[i].active {
+			// start at the players position
+			shots[i].position = player.position
+			shots[i].active = true
+
+			// get the players direction
+			shotDirection := getDirectionVector(player.rotation)
+
+			// get the initial velocity
+			shotVelocity := rl.Vector2Scale(shotDirection, shotSpeed)
+			// account for the players speed
+			playerVelocity := rl.Vector2Scale(player.speed, player.acceleration)
+
+			// fire the shot, realative to the players speed
+			shots[i].speed = rl.Vector2Add(playerVelocity, shotVelocity)
+
+			shots[i].radius = 2
+			// break after one shot
+			break
+		}
+	}
+}
+
 func main() {
 	// when the main function ends,
 	// call the deinit() function
