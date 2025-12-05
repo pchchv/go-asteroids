@@ -241,6 +241,35 @@ func createAsteroid(asteroidSize AsteroidSize, position, speed rl.Vector2) Aster
 	}
 }
 
+func createLargeAsteroid() Asteroid {
+	// generate a random position on screen
+	randomX := float32(rl.GetRandomValue(0, screenWidth))
+	randomY := float32(rl.GetRandomValue(0, screenHeight))
+
+	// generate a random edge of the screen to spawn
+	var position rl.Vector2
+	randomEdge := rl.GetRandomValue(0, 3)
+	switch randomEdge {
+	case 0:
+		position = rl.Vector2{X: randomX, Y: +tileSize}
+	case 1:
+		position = rl.Vector2{X: screenWidth + tileSize, Y: randomY}
+	case 2:
+		position = rl.Vector2{X: randomX, Y: screenHeight + tileSize}
+	case 3:
+		position = rl.Vector2{X: -tileSize, Y: randomY}
+	}
+
+	// generate a random speed and direction for the asteroid
+	speed := rl.Vector2{
+		X: float32(rl.GetRandomValue(-10, 10)) / 10,
+		Y: float32(rl.GetRandomValue(-10, 10)) / 10,
+	}
+
+	// create the large asteroid
+	return createAsteroid(Large, position, speed)
+}
+
 func main() {
 	// when the main function ends,
 	// call the deinit() function
