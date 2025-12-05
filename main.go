@@ -300,6 +300,11 @@ func createLargeAsteroid() Asteroid {
 	return createAsteroid(Large, position, speed)
 }
 
+func drawCenteredText(text string, y, fontSize int32, color rl.Color) {
+	textWidth := rl.MeasureText(text, fontSize)
+	rl.DrawText(text, screenWidth/2-textWidth/2, y, fontSize, color)
+}
+
 func main() {
 	// when the main function ends,
 	// call the deinit() function
