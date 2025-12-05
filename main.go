@@ -20,6 +20,7 @@ const (
 )
 
 var (
+	gameOver      bool
 	player        Player
 	asteroids     []Asteroid
 	texTiles      rl.Texture2D
@@ -181,10 +182,24 @@ func draw() {
 }
 
 func update() {
-	player.Update()
+	// if it is not game over,
+	// update the frame
+	if !gameOver {
+		// update the player
+		player.Update()
+
+		// update the asteroid field
+		for i := range asteroids {
+			asteroids[i].Update()
+		}
+
+	}
 }
 
 func initGame() {
+	// start with it not being game over
+	gameOver = false
+
 	// create the asteroids field
 	asteroids = nil
 	for range initialAsteroids {
