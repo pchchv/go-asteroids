@@ -151,6 +151,16 @@ func (s *Shot) Draw() {
 	}
 }
 
+func (s *Shot) Update() {
+	if s.active {
+		s.position.X += s.speed.X
+		s.position.Y -= s.speed.Y
+		if s.position.X < 0 || s.position.X > screenWidth || s.position.Y < 0 || s.position.Y > screenHeight {
+			s.active = false
+		}
+	}
+}
+
 func init() {
 	// builtin go function which runs before main()
 	// setup the raylib window
