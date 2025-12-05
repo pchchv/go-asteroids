@@ -52,8 +52,9 @@ func draw() {
 
 }
 
-// TODO: update the state
-func update() {}
+func update() {
+	player.Update()
+}
 
 func initGame() {
 	player = Player{
