@@ -92,8 +92,8 @@ func init() {
 	rl.SetTargetFPS(60)
 
 	// load textures
-	texTiles = rl.LoadTexture("resources/tilesheet.png")
-	texBackground = rl.LoadTexture("resources/space_background.png")
+	texTiles = rl.LoadTexture("assets/tilesheet.png")
+	texBackground = rl.LoadTexture("assets/space_background.png")
 	spriteRec = rl.Rectangle{X: tileSize * 0, Y: tileSize * 2, Width: tileSize, Height: tileSize}
 
 	initGame()
