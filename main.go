@@ -7,11 +7,12 @@ import (
 )
 
 const (
-	tileSize      = 64
-	screenWidth   = 800
-	screenHeight  = 400
-	rotationSpeed = 2.0
-	playerSpeed   = 6.0
+	tileSize         = 64
+	screenWidth      = 800
+	screenHeight     = 400
+	rotationSpeed    = 2.0
+	playerSpeed      = 6.0
+	initialAsteroids = 5
 
 	Small AsteroidSize = iota
 	Large
@@ -150,6 +151,9 @@ func init() {
 	spriteRec = rl.Rectangle{X: tileSize * 0, Y: tileSize * 2, Width: tileSize, Height: tileSize}
 	boostRec = rl.Rectangle{X: tileSize * 7, Y: tileSize * 5, Width: tileSize, Height: tileSize}
 
+	// sprite for the asteroid
+	asteroidRec = rl.Rectangle{X: tileSize * 1, Y: tileSize * 4, Width: tileSize, Height: tileSize}
+
 	initGame()
 }
 
@@ -181,6 +185,12 @@ func update() {
 }
 
 func initGame() {
+	// create the asteroids field
+	asteroids = nil
+	for range initialAsteroids {
+		asteroids = append(asteroids, createLargeAsteroid())
+	}
+
 	player = Player{
 		position:     rl.Vector2{X: 400, Y: 200},
 		speed:        rl.Vector2{X: 0.0, Y: 0.0},
