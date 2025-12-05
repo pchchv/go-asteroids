@@ -42,6 +42,10 @@ func draw() {
 	bgDest := rl.Rectangle{X: 0, Y: 0, Width: screenWidth, Height: screenHeight}
 	bgSource := rl.Rectangle{X: 0, Y: 0, Width: float32(texBackground.Width), Height: float32(texBackground.Height)}
 	rl.DrawTexturePro(texBackground, bgSource, bgDest, rl.Vector2{X: 0, Y: 0}, 0, rl.White)
+
+	// draw the player
+	player.Draw()
+
 	// draw the score to the screen
 	rl.DrawText("Score 0", 10, 10, 20, rl.Gray)
 	rl.EndDrawing()
