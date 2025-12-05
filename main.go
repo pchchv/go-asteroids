@@ -128,6 +128,14 @@ func (a *Asteroid) Draw() {
 	)
 }
 
+func (a *Asteroid) Update() {
+	// move the asteroid in its direction
+	a.position = rl.Vector2Add(a.position, a.speed)
+
+	// wrap the position, so they are always on screen
+	wrapPosition(&a.position, a.size.X)
+}
+
 func init() {
 	// builtin go function which runs before main()
 	// setup the raylib window
