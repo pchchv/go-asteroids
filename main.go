@@ -177,6 +177,10 @@ func draw() {
 		asteroids[i].Draw()
 	}
 
+	if gameOver {
+		drawCenteredText("Game over", screenHeight/2, 50, rl.Red)
+	}
+
 	// draw the player
 	player.Draw()
 
