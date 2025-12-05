@@ -19,6 +19,7 @@ var (
 	texTiles      rl.Texture2D
 	texBackground rl.Texture2D
 	spriteRec     rl.Rectangle
+	boostRec      rl.Rectangle
 )
 
 type Player struct {
@@ -94,7 +95,10 @@ func init() {
 	// load textures
 	texTiles = rl.LoadTexture("assets/tilesheet.png")
 	texBackground = rl.LoadTexture("assets/space_background.png")
+
+	// sprites for the ship and it boost
 	spriteRec = rl.Rectangle{X: tileSize * 0, Y: tileSize * 2, Width: tileSize, Height: tileSize}
+	boostRec = rl.Rectangle{X: tileSize * 7, Y: tileSize * 5, Width: tileSize, Height: tileSize}
 
 	initGame()
 }
