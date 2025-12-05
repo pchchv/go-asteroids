@@ -172,6 +172,11 @@ func draw() {
 	bgSource := rl.Rectangle{X: 0, Y: 0, Width: float32(texBackground.Width), Height: float32(texBackground.Height)}
 	rl.DrawTexturePro(texBackground, bgSource, bgDest, rl.Vector2{X: 0, Y: 0}, 0, rl.White)
 
+	// draw the asteroid field
+	for i := range asteroids {
+		asteroids[i].Draw()
+	}
+
 	// draw the player
 	player.Draw()
 
