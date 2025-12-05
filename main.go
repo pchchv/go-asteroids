@@ -7,12 +7,14 @@ import (
 )
 
 const (
-	tileSize         = 64
 	screenWidth      = 800
 	screenHeight     = 400
+	tileSize         = 64
+	maxShots         = 10
+	initialAsteroids = 5
 	rotationSpeed    = 2.0
 	playerSpeed      = 6.0
-	initialAsteroids = 5
+	shotSpeed        = 8.0
 
 	Small AsteroidSize = iota
 	Large
@@ -20,8 +22,9 @@ const (
 )
 
 var (
-	gameOver      bool
+	shots         []Shot
 	player        Player
+	gameOver      bool
 	asteroids     []Asteroid
 	texTiles      rl.Texture2D
 	texBackground rl.Texture2D
@@ -177,6 +180,9 @@ func init() {
 
 	// sprite for the asteroid
 	asteroidRec = rl.Rectangle{X: tileSize * 1, Y: tileSize * 4, Width: tileSize, Height: tileSize}
+
+	// create the shots
+	shots = make([]Shot, maxShots)
 
 	initGame()
 }
