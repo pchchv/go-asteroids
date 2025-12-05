@@ -79,6 +79,11 @@ func (p *Player) Update() {
 	// default to not boosting
 	player.isBoosting = false
 
+	// fire the lasers
+	if rl.IsKeyPressed(rl.KeySpace) {
+		fireShot()
+	}
+
 	// accelerate the player with up
 	if rl.IsKeyDown(rl.KeyUp) {
 		if player.acceleration < 0.9 {
