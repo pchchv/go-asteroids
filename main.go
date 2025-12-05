@@ -206,6 +206,11 @@ func draw() {
 		asteroids[i].Draw()
 	}
 
+	// draw the shots
+	for i := range shots {
+		shots[i].Draw()
+	}
+
 	if gameOver {
 		drawCenteredText("Game over", screenHeight/2, 50, rl.Red)
 	}
@@ -243,6 +248,11 @@ func initGame() {
 	asteroids = nil
 	for range initialAsteroids {
 		asteroids = append(asteroids, createLargeAsteroid())
+	}
+
+	// create the laser shots
+	for i := range shots {
+		shots[i].active = false
 	}
 
 	player = Player{
