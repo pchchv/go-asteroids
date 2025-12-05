@@ -12,6 +12,10 @@ const (
 	screenHeight  = 400
 	rotationSpeed = 2.0
 	playerSpeed   = 6.0
+
+	Small AsteroidSize = iota
+	Large
+	Medium
 )
 
 var (
@@ -21,6 +25,9 @@ var (
 	spriteRec     rl.Rectangle
 	boostRec      rl.Rectangle
 )
+
+// Enum for storing the size of the asteroid
+type AsteroidSize int
 
 type Player struct {
 	isBoosting   bool
