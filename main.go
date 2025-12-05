@@ -236,6 +236,11 @@ func update() {
 			asteroids[i].Update()
 		}
 
+		// update the shots
+		for i := range shots {
+			shots[i].Update()
+		}
+
 		checkCollisions()
 	}
 }
