@@ -138,6 +138,13 @@ func (a *Asteroid) Update() {
 	wrapPosition(&a.position, a.size.X)
 }
 
+type Shot struct {
+	speed    rl.Vector2
+	position rl.Vector2
+	radius   float32
+	active   bool
+}
+
 func init() {
 	// builtin go function which runs before main()
 	// setup the raylib window
