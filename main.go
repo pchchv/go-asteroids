@@ -115,6 +115,19 @@ type Asteroid struct {
 	asteroidSize AsteroidSize
 }
 
+// Draw draws the asteroid to the screen.
+func (a *Asteroid) Draw() {
+	destTexture := rl.Rectangle{X: a.position.X, Y: a.position.Y, Width: a.size.X, Height: a.size.Y}
+	rl.DrawTexturePro(
+		texTiles,
+		asteroidRec,
+		destTexture,
+		rl.Vector2{X: a.size.X / 2, Y: a.size.Y / 2},
+		0.0,
+		rl.White,
+	)
+}
+
 func init() {
 	// builtin go function which runs before main()
 	// setup the raylib window
