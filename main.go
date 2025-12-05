@@ -145,6 +145,12 @@ type Shot struct {
 	active   bool
 }
 
+func (s *Shot) Draw() {
+	if s.active {
+		rl.DrawCircleV(s.position, s.radius, rl.Yellow)
+	}
+}
+
 func init() {
 	// builtin go function which runs before main()
 	// setup the raylib window
