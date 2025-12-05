@@ -9,6 +9,7 @@ const (
 )
 
 var (
+	player        Player
 	texTiles      rl.Texture2D
 	texBackground rl.Texture2D
 	spriteRec     rl.Rectangle
@@ -24,6 +25,8 @@ func init() {
 	texTiles = rl.LoadTexture("resources/tilesheet.png")
 	texBackground = rl.LoadTexture("resources/space_background.png")
 	spriteRec = rl.Rectangle{X: tileSize * 0, Y: tileSize * 2, Width: tileSize, Height: tileSize}
+
+	initGame()
 }
 
 func deinit() {
@@ -47,6 +50,17 @@ func draw() {
 
 // TODO: update the state
 func update() {}
+
+func initGame() {
+	player = Player{
+		position:     rl.Vector2{X: 400, Y: 200},
+		speed:        rl.Vector2{X: 0.0, Y: 0.0},
+		size:         rl.Vector2{X: tileSize, Y: tileSize},
+		rotation:     0.0,
+		acceleration: 0.0,
+		isBoosting:   false,
+	}
+}
 
 func main() {
 	// when the main function ends,
