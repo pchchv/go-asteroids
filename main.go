@@ -20,10 +20,12 @@ const (
 
 var (
 	player        Player
+	asteroids     []Asteroid
 	texTiles      rl.Texture2D
 	texBackground rl.Texture2D
 	spriteRec     rl.Rectangle
 	boostRec      rl.Rectangle
+	asteroidRec   rl.Rectangle
 )
 
 // Enum for storing the size of the asteroid
@@ -104,6 +106,13 @@ func (p *Player) Update() {
 
 	// to void losing our ship, wrap around the screen
 	wrapPosition(&p.position, tileSize)
+}
+
+type Asteroid struct {
+	size         rl.Vector2
+	speed        rl.Vector2
+	position     rl.Vector2
+	asteroidSize AsteroidSize
 }
 
 func init() {
