@@ -25,6 +25,8 @@ const (
 var (
 	shots              []Shot
 	player             Player
+	paused             bool
+	victory            bool
 	gameOver           bool
 	asteroids          []Asteroid
 	texTiles           rl.Texture2D
@@ -220,22 +222,41 @@ func draw() {
 
 	if gameOver {
 		drawCenteredText("Game over", screenHeight/2, 50, rl.Red)
+		drawCenteredText("Press R to restart", screenHeight/2+60, 20, rl.DarkGray)
 	}
 
-	// draw the player
-	player.Draw()
+	if victory {
+		drawCenteredText("YOU WIN!", screenHeight/2, 50, rl.Gray)
+		drawCenteredText("Press R to restart", screenHeight/2+60, 20, rl.RayWhite)
+	}
 
 	// draw the score to the screen
 	rl.DrawText(fmt.Sprintf("Score %d", asteriodsDestroyed), 10, 10, 20, rl.Gray)
+	pauseTextSize := rl.MeasureText("[P]ause", 20)
+	rl.DrawText("[P]ause", screenWidth-pauseTextSize-10, 10, 20, rl.Gray)
 	rl.EndDrawing()
 
 }
 
 func update() {
+	// if there are no asteroids left, we in
+	if len(asteroids) == 0 {
+		victory = true
+	}
+
+	// toggle paused
+	if rl.IsKeyPressed('P') {
+		paused = !paused
+	}
+
+	// restart the game
+	if (gameOver || victory) && rl.IsKeyPressed('R') {
+		initGame()
+	}
+
 	// if it is not game over,
 	// update the frame
-	if !gameOver {
-		// update the player
+	if !paused && !victory && !gameOver {
 		player.Update()
 
 		// update the asteroid field
@@ -253,8 +274,11 @@ func update() {
 }
 
 func initGame() {
-	// start with it not being game over
-	gameOver = false
+	// start with it not being game over, pauses or victory
+	paused, victory, gameOver = false, false, false
+
+	// reset score
+	asteriodsDestroyed = 0
 
 	// create the asteroids field
 	asteroids = nil
