@@ -399,6 +399,31 @@ func fireShot() {
 	}
 }
 
+func splitAsteroid(asteroid Asteroid) {
+	// do nothing for small
+	if asteroid.asteroidSize == Small {
+		return
+	}
+
+	// work out how many splits to do
+	var split int
+	var newSize AsteroidSize
+	if asteroid.asteroidSize == Large {
+		split, newSize = 2, Medium
+	} else {
+		split, newSize = 4, Small
+	}
+
+	// create the new smaller asteroids
+	for range split {
+		angle := float64(rl.GetRandomValue(0, 360))
+		direction := getDirectionVector(float32(angle))
+		speed := rl.Vector2Scale(direction, 2.0)
+		newAsteroid := createAsteroid(newSize, asteroid.position, speed)
+		asteroids = append(asteroids, newAsteroid)
+	}
+}
+
 func main() {
 	// when the main function ends,
 	// call the deinit() function
