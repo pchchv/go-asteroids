@@ -71,6 +71,7 @@ func (p *Player) Draw() {
 		)
 	}
 }
+
 func (p *Player) Update() {
 	// rotate the player with the arrow keys
 	if rl.IsKeyDown(rl.KeyLeft) {
@@ -237,6 +238,7 @@ func draw() {
 	rl.DrawText(fmt.Sprintf("Score %d", asteriodsDestroyed), 10, 10, 20, rl.Gray)
 	pauseTextSize := rl.MeasureText("[P]ause", 20)
 	rl.DrawText("[P]ause", screenWidth-pauseTextSize-10, 10, 20, rl.Gray)
+
 	rl.EndDrawing()
 
 }
@@ -257,8 +259,7 @@ func update() {
 		initGame()
 	}
 
-	// if it is not game over,
-	// update the frame
+	// if it is not game over, update the frame
 	if !paused && !victory && !gameOver {
 		player.Update()
 
@@ -474,8 +475,7 @@ func splitAsteroid(asteroid Asteroid) {
 }
 
 func main() {
-	// when the main function ends,
-	// call the deinit() function
+	// when the main function ends, call the deinit() function
 	defer deinit()
 
 	// continue the loop until the window is closed or ESC is pressed
