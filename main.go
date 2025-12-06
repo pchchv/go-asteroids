@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
@@ -225,7 +226,7 @@ func draw() {
 	player.Draw()
 
 	// draw the score to the screen
-	rl.DrawText("Score 0", 10, 10, 20, rl.Gray)
+	rl.DrawText(fmt.Sprintf("Score %d", asteriodsDestroyed), 10, 10, 20, rl.Gray)
 	rl.EndDrawing()
 
 }
