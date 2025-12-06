@@ -22,15 +22,16 @@ const (
 )
 
 var (
-	shots         []Shot
-	player        Player
-	gameOver      bool
-	asteroids     []Asteroid
-	texTiles      rl.Texture2D
-	texBackground rl.Texture2D
-	spriteRec     rl.Rectangle
-	boostRec      rl.Rectangle
-	asteroidRec   rl.Rectangle
+	shots              []Shot
+	player             Player
+	gameOver           bool
+	asteroids          []Asteroid
+	texTiles           rl.Texture2D
+	texBackground      rl.Texture2D
+	boostRec           rl.Rectangle
+	spriteRec          rl.Rectangle
+	asteroidRec        rl.Rectangle
+	asteriodsDestroyed int
 )
 
 // Enum for storing the size of the asteroid
@@ -369,6 +370,26 @@ func checkCollisions() {
 			asteroids[i].size.X/4,
 		) {
 			gameOver = true
+		}
+
+		// check for a collision between shots and the asteroid
+		for j := range shots {
+			// loop through all the active shots
+			// if it has collided with an asteroid
+			if shots[j].active && rl.CheckCollisionCircles(shots[j].position, shots[j].radius, asteroids[i].position, asteroids[i].size.X/2) {
+				// destroy the shot and split the asteroid
+				shots[j].active = false
+
+				// the asteroid shot split according to our rules
+				splitAsteroid(asteroids[i])
+
+				// remove the original asteroid from the slice
+				asteroids = append(asteroids[:i], asteroids[i+1:]...)
+
+				// increase our score
+				asteriodsDestroyed++
+				break
+			}
 		}
 	}
 }
