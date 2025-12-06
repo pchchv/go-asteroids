@@ -5,3 +5,11 @@ A Go implementation of the classic arcade game Asteroids, using Raylib-go for gr
 In this space shooter, players must destroy asteroids while avoiding collisions in a full-screen environment.
 
 ![Asteroids Game Demo](assets/demo.gif)
+
+## Controls
+
++ Arrow keys: Rotate and thrust the spaceship
++ Spacebar: Fire shots
++ P: Pause the game
++ R: Restart after game over
++ Esc: Exit the game
