@@ -6,6 +6,18 @@ In this space shooter, players must destroy asteroids while avoiding collisions 
 
 ![Asteroids Game Demo](assets/demo.gif)
 
+## Start the game
+
+```sh
+make
+```
+
+or
+
+```sh
+go run .
+```
+
 ## Controls
 
 + Arrow keys: Rotate and thrust the spaceship
